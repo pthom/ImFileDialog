@@ -54,15 +54,15 @@ target_include_directories(ImFileDialogExample PRIVATE ${SDL2_INCLUDE_DIRS} ${GL
 target_include_directories(ImFileDialogExample PRIVATE libs libs/imgui)
 
 # link libraries
-target_link_libraries(ImFileDialogExample ${OPENGL_LIBRARIES})
+target_link_libraries(ImFileDialogExample PRIVATE ${OPENGL_LIBRARIES})
 
 if(WIN32)
 	# link specific win32 libraries
-	target_link_libraries(ImFileDialogExample GLEW::GLEW SDL2::SDL2 SDL2::SDL2main)
+    target_link_libraries(ImFileDialogExample PRIVATE GLEW::GLEW SDL2::SDL2 SDL2::SDL2main)
 
 elseif(UNIX AND NOT APPLE)
 	# link linux libraries
-	target_link_libraries(ImFileDialogExample ${GLEW_LIBRARIES} ${SDL2_LIBRARIES} ${CMAKE_DL_LIBS} stdc++fs pthread)
+    target_link_libraries(ImFileDialogExample PRIVATE ${GLEW_LIBRARIES} ${SDL2_LIBRARIES} ${CMAKE_DL_LIBS} stdc++fs pthread)
 elseif(APPLE)
-	target_link_libraries(ImFileDialogExample GLEW::GLEW ${SDL2_LIBRARIES} ${CMAKE_DL_LIBS})
+    target_link_libraries(ImFileDialogExample PRIVATE GLEW::GLEW ${SDL2_LIBRARIES} ${CMAKE_DL_LIBS})
 endif()
