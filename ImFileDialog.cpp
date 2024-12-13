@@ -476,6 +476,10 @@ namespace ifd {
 	}
 	bool FileDialog::Open(const std::string& key, const std::string& title, const std::string& filter, bool isMultiselect, const std::string& startingDir)
 	{
+        if (!this->CreateTexture)
+        {
+            IM_ASSERT(false && "ImFileDialog: CreateTexture function pointer is not set");
+        }
 		if (!m_currentKey.empty())
 			return false;
 
