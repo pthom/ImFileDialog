@@ -25,7 +25,7 @@
 #include <pwd.h>
 #endif
 
-#define ICON_SIZE ImGui::GetFont()->FontSize * ImGui::GetIO().FontGlobalScale + 3
+#define ICON_SIZE ImGui::GetFontSize() + 3
 #define GUI_ELEMENT_SIZE std::max(GImGui->FontSize + 10.f, 24.f)
 #define DEFAULT_ICON_SIZE 32
 #define PI 3.141592f
