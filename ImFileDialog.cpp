@@ -285,7 +285,7 @@ namespace ifd {
 		ImGuiContext& g = *GImGui;
 		ImGuiWindow* window = g.CurrentWindow;
 
-		float windowSpace = ImGui::GetWindowPos().x + ImGui::GetWindowContentRegionMax().x;
+		float windowSpace = ImGui::GetWindowPos().x + ImGui::GetWindowWidth();
 		ImVec2 pos = window->DC.CursorPos;
 		bool ret = false;
 
