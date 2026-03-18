@@ -7,6 +7,17 @@
 #include <functional>
 #include <filesystem>
 #include <unordered_map>
+
+// u8path is deprecated in C++20; use char8_t path constructor instead
+#if __cplusplus >= 202002L
+    inline std::filesystem::path ifd_u8path(const std::string& s) {
+        return std::filesystem::path(reinterpret_cast<const char8_t*>(s.c_str()));
+    }
+#else
+    inline std::filesystem::path ifd_u8path(const std::string& s) {
+        return std::filesystem::u8path(s);
+    }
+#endif
 #include <algorithm> // std::min, std::max
 
 #include "imgui.h"
@@ -68,7 +79,7 @@ namespace ifd {
 #endif
 
 			FileTreeNode(const std::string& path) {
-				Path = std::filesystem::u8path(path);
+				Path = ifd_u8path(path);
 				Read = false;
 			}
 
