@@ -1361,6 +1361,8 @@ namespace ifd {
 			ImGui::BeginChild("##contentContainer", ImVec2(0, -bottomBarHeight));
 				m_renderContent();
 			ImGui::EndChild();
+			if (ImGui::IsItemHovered() && ImGui::GetIO().KeyCtrl)
+				ImGui::SetItemKeyOwner(ImGuiKey_MouseWheelY); // Ctrl+wheel zooms the icons: the list does not scroll then
 			if (ImGui::IsItemHovered() && ImGui::GetIO().KeyCtrl && ImGui::GetIO().MouseWheel != 0.0f) {
 				m_zoom = std::min<float>(25.0f, std::max<float>(1.0f, m_zoom + ImGui::GetIO().MouseWheel));
 				m_refreshIconPreview();
